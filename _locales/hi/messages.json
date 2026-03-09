@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "एक्सटेंशन का नाम"
+  },
+  "extDescription": {
+    "message": "अपने ब्राउज़र में सभी सक्रिय टैब एक क्लिक से बंद करें, सभी टैब बंद करने का लाइट संस्करण",
+    "description": "एक्सटेंशन का विवरण"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "पॉपअप का शीर्षक"
+  },
+  "popupDescription": {
+    "message": "नई शुरुआत के लिए तैयार हैं? अपने सभी खुले टैब तुरंत बंद करने के लिए नीचे क्लिक करें।",
+    "description": "पॉपअप में विवरण"
+  },
+  "popupWarning": {
+    "message": "कृपया सावधान रहें! नीचे क्लिक करने से आपके सभी सक्रिय खुले टैब तुरंत बंद हो जाएंगे।",
+    "description": "पॉपअप में चेतावनी संदेश"
+  },
+  "closeAllTabsButton": {
+    "message": "सभी टैब बंद करें",
+    "description": "सभी टैब बंद करने वाले बटन का टेक्स्ट"
+  }
+}

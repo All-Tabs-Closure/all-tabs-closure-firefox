@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "O nome da extensão"
+  },
+  "extDescription": {
+    "message": "Feche todos os separadores ativos no seu navegador com um clique, versão lite do fecho de todos os separadores",
+    "description": "A descrição da extensão"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "O título do popup"
+  },
+  "popupDescription": {
+    "message": "Pronto para um novo começo? Clique abaixo para fechar todos os seus separadores abertos instantaneamente.",
+    "description": "A descrição no popup"
+  },
+  "popupWarning": {
+    "message": "Por favor, tenha cuidado! Clicar abaixo fechará instantaneamente todos os seus separadores ativos abertos.",
+    "description": "Mensagem de aviso no popup"
+  },
+  "closeAllTabsButton": {
+    "message": "Fechar Todos os Separadores",
+    "description": "Texto para o botão de fechar todos os separadores"
+  }
+}

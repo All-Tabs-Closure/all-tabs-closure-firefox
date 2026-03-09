@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "The name of the extension"
+  },
+  "extDescription": {
+    "message": "Close all active tabs in your browser with one click",
+    "description": "The description of the extension"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "The title of the popup"
+  },
+  "popupDescription": {
+    "message": "Ready for a fresh start? Click below to close all your open tabs instantly.",
+    "description": "The description in the popup"
+  },
+  "popupWarning": {
+    "message": "Please be cautious! Clicking below will close all your active opened tabs instantly.",
+    "description": "Warning message in the popup"
+  },
+  "closeAllTabsButton": {
+    "message": "Close All Tabs",
+    "description": "Text for the close all tabs button"
+  }
+}

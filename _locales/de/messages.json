@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "Der Name der Erweiterung"
+  },
+  "extDescription": {
+    "message": "Schließen Sie alle aktiven Tabs in Ihrem Browser mit einem Klick, Lite-Version von 'Alle Tabs schließen'",
+    "description": "Die Beschreibung der Erweiterung"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "Der Titel des Popups"
+  },
+  "popupDescription": {
+    "message": "Bereit für einen Neuanfang? Klicken Sie unten, um alle Ihre geöffneten Tabs sofort zu schließen.",
+    "description": "Die Beschreibung im Popup"
+  },
+  "popupWarning": {
+    "message": "Bitte seien Sie vorsichtig! Wenn Sie unten klicken, werden alle Ihre aktiv geöffneten Tabs sofort geschlossen.",
+    "description": "Warnmeldung im Popup"
+  },
+  "closeAllTabsButton": {
+    "message": "Alle Tabs schließen",
+    "description": "Text für den 'Alle Tabs schließen'-Button"
+  }
+}

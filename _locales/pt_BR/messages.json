@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "O nome da extensão"
+  },
+  "extDescription": {
+    "message": "Feche todas as abas ativas em seu navegador com um clique, versão lite do fechamento de todas as abas",
+    "description": "A descrição da extensão"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "O título do popup"
+  },
+  "popupDescription": {
+    "message": "Pronto para um novo começo? Clique abaixo para fechar todas as suas abas abertas instantaneamente.",
+    "description": "A descrição no popup"
+  },
+  "popupWarning": {
+    "message": "Por favor, tenha cuidado! Clicar abaixo fechará instantaneamente todas as suas abas ativas abertas.",
+    "description": "Mensagem de aviso no popup"
+  },
+  "closeAllTabsButton": {
+    "message": "Fechar Todas as Abas",
+    "description": "Texto para o botão de fechar todas as abas"
+  }
+}

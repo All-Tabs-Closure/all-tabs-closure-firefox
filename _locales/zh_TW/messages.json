@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "擴充功能名稱"
+  },
+  "extDescription": {
+    "message": "一鍵關閉瀏覽器中所有活動分頁，關閉所有分頁的精簡版本",
+    "description": "擴充功能描述"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "彈出視窗標題"
+  },
+  "popupDescription": {
+    "message": "準備重新開始？點擊下方即可立即關閉所有開啟的分頁。",
+    "description": "彈出視窗描述"
+  },
+  "popupWarning": {
+    "message": "請注意！點擊下方將立即關閉所有當前開啟的活動分頁。",
+    "description": "彈出視窗警告訊息"
+  },
+  "closeAllTabsButton": {
+    "message": "關閉所有分頁",
+    "description": "關閉所有分頁按鈕文字"
+  }
+}

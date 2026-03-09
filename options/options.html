@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Tabs Closure Options</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f4f1;
+      --fg: #1a1a1a;
+      --card: #ffffff;
+      --muted: #686868;
+      --accent: #f76f53;
+      --border: rgba(0, 0, 0, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151517;
+        --fg: #ece9e6;
+        --card: #1d1d20;
+        --muted: #b2aca7;
+        --border: rgba(255, 255, 255, 0.14);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Rubik, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: grid;
+      place-items: start center;
+      padding: 24px;
+    }
+
+    .panel {
+      width: min(620px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .option {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-right: 10px;
+    }
+
+    .option-title {
+      font-weight: 600;
+    }
+
+    .option-desc {
+      margin: 4px 0 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .actions {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    #status {
+      min-height: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Tab Closing Behavior</h1>
+    <p>Choose what should remain open when you use Close All Tabs from the popup.</p>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="except_current">
+      <span class="option-title">Close all tabs except current tab</span>
+      <p class="option-desc">Keeps only the active tab in your current window.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="except_current_and_pinned">
+      <span class="option-title">Close all tabs except current and pinned tabs</span>
+      <p class="option-desc">Keeps the active tab and every pinned tab.</p>
+    </label>
+
+    <div class="actions">
+      <button id="saveButton" type="button">Save</button>
+      <span id="status" aria-live="polite"></span>
+    </div>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>

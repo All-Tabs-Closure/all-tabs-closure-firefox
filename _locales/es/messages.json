@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "All Tabs Closure",
+    "description": "El nombre de la extensión"
+  },
+  "extDescription": {
+    "message": "Cierra todas las pestañas activas en tu navegador con un clic, versión lite de cierre de todas las pestañas",
+    "description": "La descripción de la extensión"
+  },
+  "popupTitle": {
+    "message": "All Tabs Closure",
+    "description": "El título del popup"
+  },
+  "popupDescription": {
+    "message": "¿Listo para un nuevo comienzo? Haz clic abajo para cerrar todas tus pestañas abiertas instantáneamente.",
+    "description": "La descripción en el popup"
+  },
+  "popupWarning": {
+    "message": "¡Por favor, ten cuidado! Al hacer clic abajo se cerrarán instantáneamente todas tus pestañas activas abiertas.",
+    "description": "Mensaje de advertencia en el popup"
+  },
+  "closeAllTabsButton": {
+    "message": "Cerrar todas las pestañas",
+    "description": "Texto para el botón de cerrar todas las pestañas"
+  }
+}

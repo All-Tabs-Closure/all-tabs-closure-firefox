@@ -1,5 +1,61 @@
 const CLOSE_MODE_KEY = 'closeMode';
 const DEFAULT_CLOSE_MODE = 'except_current';
+const THEME_KEY = 'uiTheme';
+const I18N_STATUS = {
+  saved: 'optionsStatusSaved',
+  executed: 'optionsStatusExecuted',
+  savedExecuted: 'optionsStatusSavedExecuted',
+  saveError: 'optionsStatusSaveError',
+  executeError: 'optionsStatusExecuteError'
+};
+
+function t(key) {
+  return browser.i18n.getMessage(key) || key;
+}
+
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    element.textContent = t(element.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+    element.setAttribute('aria-label', t(element.getAttribute('data-i18n-aria-label')));
+  });
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+}
+
+function updateThemeButtons(theme) {
+  const sunButton = document.getElementById('themeLight');
+  const moonButton = document.getElementById('themeDark');
+  sunButton.classList.toggle('active', theme === 'light');
+  moonButton.classList.toggle('active', theme === 'dark');
+}
+
+async function restoreTheme() {
+  try {
+    const stored = await browser.storage.local.get(THEME_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = stored[THEME_KEY] || (prefersDark ? 'dark' : 'light');
+    applyTheme(theme);
+    updateThemeButtons(theme);
+  } catch (error) {
+    console.error('Failed to restore theme:', error);
+    applyTheme('light');
+    updateThemeButtons('light');
+  }
+}
+
+async function setTheme(theme) {
+  applyTheme(theme);
+  updateThemeButtons(theme);
+  try {
+    await browser.storage.local.set({ [THEME_KEY]: theme });
+  } catch (error) {
+    console.error('Failed to persist theme:', error);
+  }
+}
 
 function getSelectedCloseMode() {
   const checked = document.querySelector('input[name="closeMode"]:checked');
@@ -31,7 +87,6 @@ async function restoreOptions() {
 }
 
 async function saveOptions() {
-  const status = document.getElementById('status');
   const closeMode = getSelectedCloseMode();
 
   try {
@@ -59,25 +114,50 @@ async function executeSelectedMode(saveFirst) {
   if (saveFirst) {
     const saveResult = await saveOptions();
     if (!saveResult.ok) {
-      showStatus('Could not save. Try again.', true);
+      showStatus(t(I18N_STATUS.saveError), true);
       return;
     }
   }
 
   try {
     await browser.runtime.sendMessage({ action: 'closeTabs', closeMode });
-    showStatus(saveFirst ? 'Saved and executed.' : 'Executed.');
+    showStatus(saveFirst ? t(I18N_STATUS.savedExecuted) : t(I18N_STATUS.executed));
   } catch (error) {
     console.error('Failed to execute mode:', error);
-    showStatus('Could not execute. Try again.', true);
+    showStatus(t(I18N_STATUS.executeError), true);
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  applyI18n();
+  restoreTheme();
   restoreOptions();
+
+  browser.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName !== 'local') {
+      return;
+    }
+
+    if (changes[THEME_KEY]) {
+      const newTheme = changes[THEME_KEY].newValue;
+      const resolvedTheme = newTheme === 'dark' ? 'dark' : 'light';
+      applyTheme(resolvedTheme);
+      updateThemeButtons(resolvedTheme);
+    }
+
+    if (changes[CLOSE_MODE_KEY]) {
+      setSelectedCloseMode(changes[CLOSE_MODE_KEY].newValue || DEFAULT_CLOSE_MODE);
+    }
+  });
+
+  document.getElementById('themeLight').addEventListener('click', () => setTheme('light'));
+  document.getElementById('themeDark').addEventListener('click', () => setTheme('dark'));
+  document.getElementById('openLicenseButton').addEventListener('click', () => {
+    browser.runtime.sendMessage({ action: 'openLicensePage' });
+  });
   document.getElementById('saveButton').addEventListener('click', async () => {
     const result = await saveOptions();
-    showStatus(result.ok ? 'Saved.' : 'Could not save. Try again.', !result.ok);
+    showStatus(result.ok ? t(I18N_STATUS.saved) : t(I18N_STATUS.saveError), !result.ok);
   });
   document.getElementById('executeButton').addEventListener('click', () => executeSelectedMode(false));
   document.getElementById('saveExecuteButton').addEventListener('click', () => executeSelectedMode(true));

@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Tabs Closure Options</title>
+  <title data-i18n="optionsPageTitle">All Tabs Closure Options</title>
   <style>
+    @font-face {
+      font-family: 'MFB Oldstyle';
+      src: url('../Fonts/MFB-Oldstyle-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #f5f3f0;
       --card: #fffdfb;
@@ -30,6 +38,28 @@
       }
     }
 
+    html[data-theme='light'] {
+      --bg: #f5f3f0;
+      --card: #fffdfb;
+      --fg: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: rgba(0, 0, 0, 0.08);
+      --row: rgba(247, 111, 83, 0.05);
+      --row-selected: rgba(247, 111, 83, 0.12);
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    html[data-theme='dark'] {
+      --bg: #19191b;
+      --card: #232325;
+      --fg: #e8e6e3;
+      --muted: #a6a29e;
+      --border: rgba(255, 255, 255, 0.08);
+      --row: rgba(247, 111, 83, 0.10);
+      --row-selected: rgba(247, 111, 83, 0.20);
+      --shadow: 0 10px 36px rgba(0, 0, 0, 0.28);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -37,7 +67,7 @@
     }
 
     body {
-      font-family: "Rubik", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "MFB Oldstyle", "Rubik", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--fg);
       min-height: 100dvh;
@@ -62,8 +92,56 @@
     .header {
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 10px;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .theme-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+    }
+
+    .theme-switch button {
+      width: 30px;
+      height: 30px;
+      min-width: 0;
+      padding: 0;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-switch img {
+      width: 16px;
+      height: 16px;
+      opacity: 0.85;
+    }
+
+    .theme-switch button.active {
+      background: rgba(247, 111, 83, 0.2);
+    }
+
+    html[data-theme='dark'] .theme-switch {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    html[data-theme='dark'] .theme-switch button.active {
+      background: rgba(247, 111, 83, 0.28);
     }
 
     .icon-wrap {
@@ -220,6 +298,10 @@
         align-items: flex-start;
       }
 
+      .header-main {
+        align-items: flex-start;
+      }
+
       .icon-wrap {
         width: 46px;
         height: 46px;
@@ -244,102 +326,113 @@
   <main class="page">
     <section class="panel">
       <div class="header">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="32" height="32">
-            <defs>
-              <linearGradient id="zen-bg-opt" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ff8a65"/>
-                <stop offset="100%" stop-color="#f76f53"/>
-              </linearGradient>
-            </defs>
-            <rect x="1" y="1" width="34" height="34" rx="9" fill="url(#zen-bg-opt)"/>
-            <rect x="5" y="8" width="26" height="20" rx="3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
-            <rect x="5" y="8" width="26" height="7" rx="3" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
-            <rect x="7" y="10" width="6" height="3" rx="1.5" fill="#fff" opacity="0.95"/>
-            <rect x="15" y="10" width="6" height="3" rx="1.5" fill="#fff" opacity="0.55"/>
-            <rect x="23" y="10" width="5" height="3" rx="1.5" fill="#fff" opacity="0.30"/>
-            <line x1="11" y1="19" x2="25" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-            <line x1="25" y1="19" x2="11" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-          </svg>
+        <div class="header-main">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="32" height="32">
+              <defs>
+                <linearGradient id="zen-bg-opt" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff8a65"/>
+                  <stop offset="100%" stop-color="#f76f53"/>
+                </linearGradient>
+              </defs>
+              <rect x="1" y="1" width="34" height="34" rx="9" fill="url(#zen-bg-opt)"/>
+              <rect x="5" y="8" width="26" height="20" rx="3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+              <rect x="5" y="8" width="26" height="7" rx="3" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+              <rect x="7" y="10" width="6" height="3" rx="1.5" fill="#fff" opacity="0.95"/>
+              <rect x="15" y="10" width="6" height="3" rx="1.5" fill="#fff" opacity="0.55"/>
+              <rect x="23" y="10" width="5" height="3" rx="1.5" fill="#fff" opacity="0.30"/>
+              <line x1="11" y1="19" x2="25" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="25" y1="19" x2="11" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1 data-i18n="optionsTitle"></h1>
+            <p class="subtitle" data-i18n="optionsSubtitle"></p>
+          </div>
         </div>
-        <div>
-          <h1>Tab Closing Behavior</h1>
-          <p class="subtitle">Choose what should happen when you use the popup action.</p>
+        <div class="theme-switch" role="group" data-i18n-aria-label="themeSwitcherAriaLabel">
+          <button id="themeLight" type="button" class="secondary" data-i18n-aria-label="themeLightAriaLabel">
+            <img src="../Third-party-icons/sun.svg" alt="">
+          </button>
+          <button id="themeDark" type="button" class="secondary" data-i18n-aria-label="themeDarkAriaLabel">
+            <img src="../Third-party-icons/moon.svg" alt="">
+          </button>
         </div>
       </div>
 
-      <p class="warning">Some actions are destructive and may close all windows or clear browsing history.</p>
+      <p class="warning" data-i18n="optionsWarning"></p>
 
       <div class="options">
         <label class="option">
           <input type="radio" name="closeMode" value="open_new_after_close_except_pinned">
           <span>
-            <span class="option-title">Open new tab after closing except pinned</span>
-            <p class="option-desc">Keeps pinned tabs and opens one new tab.</p>
+            <span class="option-title" data-i18n="modeOpenNewAfterCloseExceptPinnedTitle"></span>
+            <p class="option-desc" data-i18n="modeOpenNewAfterCloseExceptPinnedDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="close_all_including_browser">
           <span>
-            <span class="option-title">Close all tabs (including browser)</span>
-            <p class="option-desc">Closes all normal browser windows.</p>
+            <span class="option-title" data-i18n="modeCloseAllIncludingBrowserTitle"></span>
+            <p class="option-desc" data-i18n="modeCloseAllIncludingBrowserDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="close_all_including_pinned_keep_browser">
           <span>
-            <span class="option-title">Close all tabs (including pinned) without closing browser</span>
-            <p class="option-desc">Opens one fresh tab and closes all others.</p>
+            <span class="option-title" data-i18n="modeCloseAllKeepBrowserTitle"></span>
+            <p class="option-desc" data-i18n="modeCloseAllKeepBrowserDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="except_current_and_pinned">
           <span>
-            <span class="option-title">Close all tabs except current and pinned tabs</span>
-            <p class="option-desc">Applies to the current window.</p>
+            <span class="option-title" data-i18n="modeExceptCurrentAndPinnedTitle"></span>
+            <p class="option-desc" data-i18n="modeExceptCurrentAndPinnedDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="except_current">
           <span>
-            <span class="option-title">Close all tabs except current tab</span>
-            <p class="option-desc">Keeps only the active tab in current window.</p>
+            <span class="option-title" data-i18n="modeExceptCurrentTitle"></span>
+            <p class="option-desc" data-i18n="modeExceptCurrentDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="close_tabs_in_other_windows">
           <span>
-            <span class="option-title">Close all tabs in other windows</span>
-            <p class="option-desc">Keeps all tabs in the current window untouched.</p>
+            <span class="option-title" data-i18n="modeCloseTabsInOtherWindowsTitle"></span>
+            <p class="option-desc" data-i18n="modeCloseTabsInOtherWindowsDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="except_current_pinned_grouped">
           <span>
-            <span class="option-title">Close all tabs except current, pinned, group tabs</span>
-            <p class="option-desc">Across all windows; keeps active tab, pinned tabs, and grouped tabs.</p>
+            <span class="option-title" data-i18n="modeExceptCurrentPinnedGroupedTitle"></span>
+            <p class="option-desc" data-i18n="modeExceptCurrentPinnedGroupedDesc"></p>
           </span>
         </label>
 
         <label class="option">
           <input type="radio" name="closeMode" value="close_others_current_keep_active_pinned_grouped">
           <span>
-            <span class="option-title">Close other tabs in current window (keep active, pinned, and grouped)</span>
-            <p class="option-desc">Also closes all tabs in other windows.</p>
+            <span class="option-title" data-i18n="modeCloseOthersCurrentKeepActivePinnedGroupedTitle"></span>
+            <p class="option-desc" data-i18n="modeCloseOthersCurrentKeepActivePinnedGroupedDesc"></p>
           </span>
         </label>
       </div>
 
       <div class="actions">
-        <button id="executeButton" class="secondary" type="button">Execute</button>
-        <button id="saveButton" class="secondary" type="button">Save</button>
-        <button id="saveExecuteButton" type="button">Save &amp; Execute</button>
+        <button id="openLicenseButton" class="secondary" type="button" data-i18n="optionsLicenseButton"></button>
+        <button id="executeButton" class="secondary" type="button" data-i18n="optionsExecuteButton"></button>
+        <button id="saveButton" class="secondary" type="button" data-i18n="optionsSaveButton"></button>
+        <button id="saveExecuteButton" type="button" data-i18n="optionsSaveExecuteButton"></button>
         <span id="status" aria-live="polite"></span>
       </div>
     </section>

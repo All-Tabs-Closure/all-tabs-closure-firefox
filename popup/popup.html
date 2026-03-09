@@ -26,8 +26,78 @@ SOFTWARE.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Tabs Closure</title>
+    <title data-i18n="popupPageTitle">All Tabs Closure</title>
     <style>
+        @font-face {
+            font-family: 'MFB Oldstyle';
+            src: url('../Fonts/MFB-Oldstyle-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #f5f3f0;
+            --fg: #1a1a1a;
+            --muted: #6b6b6b;
+            --warn: #c85a3e;
+            --warn-bg: rgba(247, 111, 83, 0.08);
+            --divider: rgba(0, 0, 0, 0.07);
+            --icon-bg: rgba(247, 111, 83, 0.10);
+            --secondary-border: rgba(0, 0, 0, 0.15);
+            --secondary-hover: rgba(0, 0, 0, 0.04);
+            --secondary-active: rgba(0, 0, 0, 0.08);
+            --theme-bg: rgba(0, 0, 0, 0.06);
+            --theme-active: rgba(247, 111, 83, 0.18);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #19191b;
+                --fg: #e8e6e3;
+                --muted: #909090;
+                --warn: #e07560;
+                --warn-bg: rgba(247, 111, 83, 0.10);
+                --divider: rgba(255, 255, 255, 0.07);
+                --icon-bg: rgba(247, 111, 83, 0.13);
+                --secondary-border: rgba(255, 255, 255, 0.16);
+                --secondary-hover: rgba(255, 255, 255, 0.06);
+                --secondary-active: rgba(255, 255, 255, 0.10);
+                --theme-bg: rgba(255, 255, 255, 0.08);
+                --theme-active: rgba(247, 111, 83, 0.28);
+            }
+        }
+
+        html[data-theme='light'] {
+            --bg: #f5f3f0;
+            --fg: #1a1a1a;
+            --muted: #6b6b6b;
+            --warn: #c85a3e;
+            --warn-bg: rgba(247, 111, 83, 0.08);
+            --divider: rgba(0, 0, 0, 0.07);
+            --icon-bg: rgba(247, 111, 83, 0.10);
+            --secondary-border: rgba(0, 0, 0, 0.15);
+            --secondary-hover: rgba(0, 0, 0, 0.04);
+            --secondary-active: rgba(0, 0, 0, 0.08);
+            --theme-bg: rgba(0, 0, 0, 0.06);
+            --theme-active: rgba(247, 111, 83, 0.18);
+        }
+
+        html[data-theme='dark'] {
+            --bg: #19191b;
+            --fg: #e8e6e3;
+            --muted: #909090;
+            --warn: #e07560;
+            --warn-bg: rgba(247, 111, 83, 0.10);
+            --divider: rgba(255, 255, 255, 0.07);
+            --icon-bg: rgba(247, 111, 83, 0.13);
+            --secondary-border: rgba(255, 255, 255, 0.16);
+            --secondary-hover: rgba(255, 255, 255, 0.06);
+            --secondary-active: rgba(255, 255, 255, 0.10);
+            --theme-bg: rgba(255, 255, 255, 0.08);
+            --theme-active: rgba(247, 111, 83, 0.28);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -36,10 +106,10 @@ SOFTWARE.
 
         body {
             width: 300px;
-            font-family: 'Rubik', 'Inter', -apple-system, BlinkMacSystemFont,
+            font-family: 'MFB Oldstyle', 'Rubik', 'Inter', -apple-system, BlinkMacSystemFont,
                          'Segoe UI', sans-serif;
-            background: #f5f3f0;
-            color: #1a1a1a;
+            background: var(--bg);
+            color: var(--fg);
         }
 
         .container {
@@ -50,11 +120,50 @@ SOFTWARE.
             gap: 14px;
         }
 
+        .topbar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: -2px;
+        }
+
+        .theme-switch {
+            display: inline-flex;
+            gap: 4px;
+            padding: 3px;
+            border-radius: 999px;
+            background: var(--theme-bg);
+        }
+
+        .theme-switch button {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            border: none;
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .theme-switch button.active {
+            background: var(--theme-active);
+        }
+
+        .theme-switch img {
+            width: 16px;
+            height: 16px;
+            opacity: 0.85;
+        }
+
         /* Icon */
         .icon-wrap {
             width: 60px;
             height: 60px;
-            background: rgba(247, 111, 83, 0.10);
+            background: var(--icon-bg);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -75,25 +184,25 @@ SOFTWARE.
             font-size: 17px;
             font-weight: 600;
             letter-spacing: -0.3px;
-            color: #1a1a1a;
+            color: var(--fg);
             margin-bottom: 7px;
         }
 
         p {
             font-size: 12.5px;
             line-height: 1.65;
-            color: #6b6b6b;
+            color: var(--muted);
         }
 
         /* Warning pill */
         .warning {
             width: 100%;
-            background: rgba(247, 111, 83, 0.08);
+            background: var(--warn-bg);
             border-radius: 10px;
             padding: 9px 13px;
             font-size: 11.5px;
             line-height: 1.55;
-            color: #c85a3e;
+            color: var(--warn);
             display: flex;
             align-items: flex-start;
             gap: 6px;
@@ -108,7 +217,7 @@ SOFTWARE.
         .divider {
             width: 100%;
             height: 1px;
-            background: rgba(0, 0, 0, 0.07);
+            background: var(--divider);
             border-radius: 1px;
         }
 
@@ -148,70 +257,38 @@ SOFTWARE.
 
         .secondary-button {
             background: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            color: #1a1a1a;
+            border: 1px solid var(--secondary-border);
+            color: var(--fg);
             box-shadow: none;
             margin-top: 8px;
         }
 
         .secondary-button:hover {
-            background: rgba(0, 0, 0, 0.04);
+            background: var(--secondary-hover);
             box-shadow: none;
         }
 
         .secondary-button:active {
-            background: rgba(0, 0, 0, 0.08);
+            background: var(--secondary-active);
             box-shadow: none;
-        }
-
-        /* ── Dark mode ── */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #19191b;
-                color: #e8e6e3;
-            }
-
-            .icon-wrap {
-                background: rgba(247, 111, 83, 0.13);
-            }
-
-            h2 {
-                color: #e8e6e3;
-            }
-
-            p {
-                color: #909090;
-            }
-
-            .warning {
-                background: rgba(247, 111, 83, 0.10);
-                color: #e07560;
-            }
-
-            .divider {
-                background: rgba(255, 255, 255, 0.07);
-            }
-
-            .secondary-button {
-                border-color: rgba(255, 255, 255, 0.16);
-                color: #e8e6e3;
-            }
-
-            .secondary-button:hover {
-                background: rgba(255, 255, 255, 0.06);
-            }
-
-            .secondary-button:active {
-                background: rgba(255, 255, 255, 0.10);
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="topbar">
+            <div class="theme-switch" role="group" data-i18n-aria-label="themeSwitcherAriaLabel">
+                <button id="themeLight" type="button" data-i18n-aria-label="themeLightAriaLabel">
+                    <img src="../Third-party-icons/sun.svg" alt="">
+                </button>
+                <button id="themeDark" type="button" data-i18n-aria-label="themeDarkAriaLabel">
+                    <img src="../Third-party-icons/moon.svg" alt="">
+                </button>
+            </div>
+        </div>
         <div class="icon-wrap">
             <!-- Main extension icon — Zen style -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36" role="img" aria-label="Close Tabs Icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36" role="img" data-i18n-aria-label="closeTabsIconAriaLabel">
                 <defs>
                     <linearGradient id="zen-bg-ff" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#ff8a65"/>
@@ -260,7 +337,8 @@ SOFTWARE.
             <span data-i18n="closeAllTabsButton"></span>
         </button>
 
-        <button id="openOptions" class="secondary-button" type="button">Options</button>
+        <button id="openOptions" class="secondary-button" type="button"><span data-i18n="popupOptionsButton"></span></button>
+        <button id="openLicense" class="secondary-button" type="button"><span data-i18n="popupLicenseButton"></span></button>
     </div>
     <script src="popup.js"></script>
 </body>

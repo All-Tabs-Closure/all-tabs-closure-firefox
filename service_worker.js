@@ -175,6 +175,11 @@ browser.runtime.onMessage.addListener(async function(request) {
     return { status: "Opened options page" };
   }
 
+  if (request.action === "openLicensePage") {
+    await browser.tabs.create({ url: browser.runtime.getURL("license.html") });
+    return { status: "Opened license page" };
+  }
+
   return { status: "Unknown action" };
 });
 

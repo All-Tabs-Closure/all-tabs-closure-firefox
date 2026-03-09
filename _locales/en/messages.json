@@ -12,15 +12,187 @@
     "description": "The title of the popup"
   },
   "popupDescription": {
-    "message": "Ready for a fresh start? Click below to close all your open tabs instantly.",
+    "message": "Run the action selected in Options. You can choose how tabs are closed before executing.",
     "description": "The description in the popup"
   },
   "popupWarning": {
-    "message": "Please be cautious! Clicking below will close all your active opened tabs instantly.",
+    "message": "Caution: some modes may close all browser windows. Review your selected mode in Options.",
     "description": "Warning message in the popup"
   },
   "closeAllTabsButton": {
-    "message": "Close All Tabs",
-    "description": "Text for the close all tabs button"
+    "message": "Run Selected Action",
+    "description": "Text for the execute button in popup"
+  },
+  "themeSwitcherAriaLabel": {
+    "message": "Theme switcher",
+    "description": "Aria label for theme switcher"
+  },
+  "themeLightAriaLabel": {
+    "message": "Light theme",
+    "description": "Aria label for light theme button"
+  },
+  "themeDarkAriaLabel": {
+    "message": "Dark theme",
+    "description": "Aria label for dark theme button"
+  },
+  "popupOptionsButton": {
+    "message": "Options",
+    "description": "Text for options button in popup"
+  },
+  "popupLicenseButton": {
+    "message": "License",
+    "description": "Text for license button in popup"
+  },
+  "optionsTitle": {
+    "message": "Tab Closing Behavior",
+    "description": "Title of options page"
+  },
+  "optionsSubtitle": {
+    "message": "Choose what should happen when you use the popup action.",
+    "description": "Subtitle on options page"
+  },
+  "optionsWarning": {
+    "message": "Some actions are destructive and may close all windows.",
+    "description": "Warning text on options page"
+  },
+  "modeOpenNewAfterCloseExceptPinnedTitle": {
+    "message": "Open new tab after closing except pinned",
+    "description": "Mode title"
+  },
+  "modeOpenNewAfterCloseExceptPinnedDesc": {
+    "message": "Keeps pinned tabs and opens one new tab.",
+    "description": "Mode description"
+  },
+  "modeCloseAllIncludingBrowserTitle": {
+    "message": "Close all tabs (including browser)",
+    "description": "Mode title"
+  },
+  "modeCloseAllIncludingBrowserDesc": {
+    "message": "Closes all normal browser windows.",
+    "description": "Mode description"
+  },
+  "modeCloseAllKeepBrowserTitle": {
+    "message": "Close all tabs (including pinned) without closing browser",
+    "description": "Mode title"
+  },
+  "modeCloseAllKeepBrowserDesc": {
+    "message": "Opens one fresh tab and closes all others.",
+    "description": "Mode description"
+  },
+  "modeExceptCurrentAndPinnedTitle": {
+    "message": "Close all tabs except current and pinned tabs",
+    "description": "Mode title"
+  },
+  "modeExceptCurrentAndPinnedDesc": {
+    "message": "Applies to the current window.",
+    "description": "Mode description"
+  },
+  "modeExceptCurrentTitle": {
+    "message": "Close all tabs except current tab",
+    "description": "Mode title"
+  },
+  "modeExceptCurrentDesc": {
+    "message": "Keeps only the active tab in current window.",
+    "description": "Mode description"
+  },
+  "modeCloseTabsInOtherWindowsTitle": {
+    "message": "Close all tabs in other windows",
+    "description": "Mode title"
+  },
+  "modeCloseTabsInOtherWindowsDesc": {
+    "message": "Keeps all tabs in the current window untouched.",
+    "description": "Mode description"
+  },
+  "modeExceptCurrentPinnedGroupedTitle": {
+    "message": "Close all tabs except current, pinned, group tabs",
+    "description": "Mode title"
+  },
+  "modeExceptCurrentPinnedGroupedDesc": {
+    "message": "Across all windows; keeps active tab, pinned tabs, and grouped tabs.",
+    "description": "Mode description"
+  },
+  "modeCloseOthersCurrentKeepActivePinnedGroupedTitle": {
+    "message": "Close other tabs in current window (keep active, pinned, and grouped)",
+    "description": "Mode title"
+  },
+  "modeCloseOthersCurrentKeepActivePinnedGroupedDesc": {
+    "message": "Also closes all tabs in other windows.",
+    "description": "Mode description"
+  },
+  "optionsLicenseButton": {
+    "message": "License",
+    "description": "License button text in options"
+  },
+  "optionsExecuteButton": {
+    "message": "Execute",
+    "description": "Execute button text in options"
+  },
+  "optionsSaveButton": {
+    "message": "Save",
+    "description": "Save button text in options"
+  },
+  "optionsSaveExecuteButton": {
+    "message": "Save & Execute",
+    "description": "Save and execute button text in options"
+  },
+  "optionsStatusSaved": {
+    "message": "Saved.",
+    "description": "Status after save"
+  },
+  "optionsStatusExecuted": {
+    "message": "Executed.",
+    "description": "Status after execute"
+  },
+  "optionsStatusSavedExecuted": {
+    "message": "Saved and executed.",
+    "description": "Status after save and execute"
+  },
+  "optionsStatusSaveError": {
+    "message": "Could not save. Try again.",
+    "description": "Status after save error"
+  },
+  "optionsStatusExecuteError": {
+    "message": "Could not execute. Try again.",
+    "description": "Status after execute error"
+  },
+  "licensePageTitle": {
+    "message": "Licenses",
+    "description": "License page title"
+  },
+  "licensePageSubtitle": {
+    "message": "Project and third-party license texts used in this extension.",
+    "description": "License page subtitle"
+  },
+  "licenseProjectHeading": {
+    "message": "Project License",
+    "description": "Project license section title"
+  },
+  "licenseThirdPartyHeading": {
+    "message": "Third-Party Licenses",
+    "description": "Third party section title"
+  },
+  "licenseLoading": {
+    "message": "Loading...",
+    "description": "Loading text on license page"
+  },
+  "licenseLoadError": {
+    "message": "Could not load license content.",
+    "description": "Shown when license text cannot be loaded"
+  },
+  "popupPageTitle": {
+    "message": "All Tabs Closure",
+    "description": "Popup page title"
+  },
+  "closeTabsIconAriaLabel": {
+    "message": "Close Tabs Icon",
+    "description": "Aria label for popup icon"
+  },
+  "optionsPageTitle": {
+    "message": "All Tabs Closure Options",
+    "description": "Options page title"
+  },
+  "licensePageBrowserTitle": {
+    "message": "Licenses - All Tabs Closure",
+    "description": "Browser tab title for license page"
   }
 }

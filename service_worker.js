@@ -30,7 +30,6 @@ const CLOSE_MODES = {
   EXCEPT_CURRENT: "except_current",
   CLOSE_IN_OTHER_WINDOWS: "close_tabs_in_other_windows",
   EXCEPT_CURRENT_PINNED_GROUPED: "except_current_pinned_grouped",
-  CLOSE_AND_CLEAR_HISTORY: "close_all_and_clear_history",
   CLOSE_OTHERS_CURRENT_KEEP_ACTIVE_PINNED_GROUPED: "close_others_current_keep_active_pinned_grouped"
 };
 const DEFAULT_CLOSE_MODE = CLOSE_MODES.EXCEPT_CURRENT;
@@ -41,7 +40,9 @@ function isGroupedTab(tab) {
 
 async function getCloseMode() {
   const stored = await browser.storage.local.get(CLOSE_MODE_KEY);
-  return stored[CLOSE_MODE_KEY] || DEFAULT_CLOSE_MODE;
+  const selectedMode = stored[CLOSE_MODE_KEY];
+  const validModes = new Set(Object.values(CLOSE_MODES));
+  return validModes.has(selectedMode) ? selectedMode : DEFAULT_CLOSE_MODE;
 }
 
 async function getContext() {
@@ -66,8 +67,9 @@ async function closeAllTabsIncludingPinnedKeepBrowser(currentWindowId) {
   await removeTabs(allTabs.filter(tab => tab.id !== createdTab.id));
 }
 
-async function closeAllTabsByMode() {
-  const closeMode = await getCloseMode();
+async function closeAllTabsByMode(overrideMode) {
+  const validModes = new Set(Object.values(CLOSE_MODES));
+  const closeMode = validModes.has(overrideMode) ? overrideMode : await getCloseMode();
   const { activeTab, allTabs, currentWindowId } = await getContext();
   const tabsInCurrentWindow = typeof currentWindowId === "number"
     ? allTabs.filter(tab => tab.windowId === currentWindowId)
@@ -130,23 +132,20 @@ async function closeAllTabsByMode() {
       );
       break;
     }
-    case CLOSE_MODES.CLOSE_AND_CLEAR_HISTORY: {
-      await closeAllTabsIncludingPinnedKeepBrowser(currentWindowId);
-      await browser.history.deleteAll();
-      break;
-    }
     case CLOSE_MODES.CLOSE_OTHERS_CURRENT_KEEP_ACTIVE_PINNED_GROUPED: {
-      await removeTabs(
-        tabsInCurrentWindow.filter(tab => {
-          if (activeTab && tab.id === activeTab.id) {
-            return false;
-          }
-          if (tab.pinned || isGroupedTab(tab)) {
-            return false;
-          }
-          return true;
-        })
+      const currentWindowTabsToClose = tabsInCurrentWindow.filter(tab => {
+        if (activeTab && tab.id === activeTab.id) {
+          return false;
+        }
+        if (tab.pinned || isGroupedTab(tab)) {
+          return false;
+        }
+        return true;
+      });
+      const otherWindowsTabsToClose = allTabs.filter(
+        tab => typeof currentWindowId === "number" && tab.windowId !== currentWindowId
       );
+      await removeTabs([...currentWindowTabsToClose, ...otherWindowsTabsToClose]);
       break;
     }
     default: {
@@ -163,7 +162,7 @@ async function closeAllTabsByMode() {
 browser.runtime.onMessage.addListener(async function(request) {
   if (request.action === "closeTabs") {
     try {
-      await closeAllTabsByMode();
+      await closeAllTabsByMode(request.closeMode);
       return { status: "Closing tabs completed" };
     } catch (error) {
       console.error("Error in closeAllTabs:", error);

@@ -36,17 +36,49 @@ async function saveOptions() {
 
   try {
     await browser.storage.local.set({ [CLOSE_MODE_KEY]: closeMode });
-    status.textContent = 'Saved.';
-    setTimeout(() => {
-      status.textContent = '';
-    }, 1500);
+    return { ok: true };
   } catch (error) {
     console.error('Failed to save options:', error);
-    status.textContent = 'Could not save. Try again.';
+    return { ok: false, error };
+  }
+}
+
+function showStatus(message, isError = false) {
+  const status = document.getElementById('status');
+  status.textContent = message;
+  status.style.color = isError ? '#c33' : '';
+  setTimeout(() => {
+    status.textContent = '';
+    status.style.color = '';
+  }, 1700);
+}
+
+async function executeSelectedMode(saveFirst) {
+  const closeMode = getSelectedCloseMode();
+
+  if (saveFirst) {
+    const saveResult = await saveOptions();
+    if (!saveResult.ok) {
+      showStatus('Could not save. Try again.', true);
+      return;
+    }
+  }
+
+  try {
+    await browser.runtime.sendMessage({ action: 'closeTabs', closeMode });
+    showStatus(saveFirst ? 'Saved and executed.' : 'Executed.');
+  } catch (error) {
+    console.error('Failed to execute mode:', error);
+    showStatus('Could not execute. Try again.', true);
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   restoreOptions();
-  document.getElementById('saveButton').addEventListener('click', saveOptions);
+  document.getElementById('saveButton').addEventListener('click', async () => {
+    const result = await saveOptions();
+    showStatus(result.ok ? 'Saved.' : 'Could not save. Try again.', !result.ok);
+  });
+  document.getElementById('executeButton').addEventListener('click', () => executeSelectedMode(false));
+  document.getElementById('saveExecuteButton').addEventListener('click', () => executeSelectedMode(true));
 });

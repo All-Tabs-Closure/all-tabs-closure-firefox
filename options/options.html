@@ -109,18 +109,60 @@
 <body>
   <main class="panel">
     <h1>Tab Closing Behavior</h1>
-    <p>Choose what should remain open when you use Close All Tabs from the popup.</p>
+    <p>Choose what should happen when you click the action button in the popup.</p>
 
     <label class="option">
-      <input type="radio" name="closeMode" value="except_current">
-      <span class="option-title">Close all tabs except current tab</span>
-      <p class="option-desc">Keeps only the active tab in your current window.</p>
+      <input type="radio" name="closeMode" value="open_new_after_close_except_pinned">
+      <span class="option-title">Open new tab after closing except pinned</span>
+      <p class="option-desc">Keeps pinned tabs and opens one new tab.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="close_all_including_browser">
+      <span class="option-title">Close all tabs (including browser)</span>
+      <p class="option-desc">Closes all normal browser windows.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="close_all_including_pinned_keep_browser">
+      <span class="option-title">Close all tabs (including pinned) without closing browser</span>
+      <p class="option-desc">Opens one fresh tab and closes all others.</p>
     </label>
 
     <label class="option">
       <input type="radio" name="closeMode" value="except_current_and_pinned">
       <span class="option-title">Close all tabs except current and pinned tabs</span>
-      <p class="option-desc">Keeps the active tab and every pinned tab.</p>
+      <p class="option-desc">Applies to the current window.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="except_current">
+      <span class="option-title">Close all tabs except current tab</span>
+      <p class="option-desc">Keeps only the active tab in current window.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="close_tabs_in_other_windows">
+      <span class="option-title">Close all tabs in other windows</span>
+      <p class="option-desc">Keeps all tabs in the current window untouched.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="except_current_pinned_grouped">
+      <span class="option-title">Close all tabs except current, pinned, group tabs</span>
+      <p class="option-desc">Across all windows; keeps active tab, pinned tabs, and grouped tabs.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="close_all_and_clear_history">
+      <span class="option-title">Close all tabs and clear search History</span>
+      <p class="option-desc">Closes tabs and clears browsing history.</p>
+    </label>
+
+    <label class="option">
+      <input type="radio" name="closeMode" value="close_others_current_keep_active_pinned_grouped">
+      <span class="option-title">Close other tabs in current window (keep active, pinned, and grouped)</span>
+      <p class="option-desc">Only affects the current window.</p>
     </label>
 
     <div class="actions">

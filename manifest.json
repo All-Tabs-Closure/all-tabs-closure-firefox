@@ -13,7 +13,7 @@
   "background": {
     "scripts": ["service_worker.js"]
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs", "history"],
   "default_locale": "en",
   "options_ui": {
     "page": "options/options.html",
